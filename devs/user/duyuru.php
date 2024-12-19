@@ -7,6 +7,11 @@ if (!isset($_SESSION['user_id'])) {
   header("Location: ../login");
   exit();
 }
+
+// Duyuruları alalım
+$stmt = $db->query("SELECT * FROM announcements ORDER BY created_at DESC");
+$announcements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -27,6 +32,76 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="/css/admin.css">
 
   <style>
+
+ /* Duyuru Box'larının arka planını siyah yapalım ve genişliği tam yapalım */
+.announcement {
+  background-color: #000000; /* Siyah arka plan */
+  color: var(--pure-white);
+  padding: 1.5rem;
+  margin-top: 60px; /* Header'ın altına yerleştirebilmek için margin ekledik */
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Genişliği tam yapıyoruz */
+}
+
+
+
+.announcement-back {
+    background-color: var(--dark-gray);
+    color: var(--pure-white);
+  padding: 1.5rem;
+  margin-top: 60px; /* Header'ın altına yerleştirebilmek için margin ekledik */
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Genişliği tam yapıyoruz */
+}
+
+/* Duyuru içerik kısmının yazılarını da daha belirgin yapalım */
+.announcement-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.announcement-content p {
+  font-size: 1rem;
+}
+
+/* Mobilde Duyuru Bölümünün Boyutlarını Ayarlama */
+@media (max-width: 768px) {
+  .announcement {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    margin-top: 50px; /* Mobilde de header'ın altına uygun boşluk ekliyoruz */
+  }
+
+  .announcement-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .announcement-content p {
+    font-size: 0.9rem;
+  }
+}
+
+a {
+  color:rgb(255, 255, 255); /* Mavi renk */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e74c3c; /* Kırmızı renge döner */
+}
+
+
     /* Koyu Siyah Tema */
     :root {
       --pure-black: #0a0a0a;
@@ -419,6 +494,8 @@ if (!isset($_SESSION['user_id'])) {
   font-size: 1rem;
 }
 
+
+
 /* Mobilde Duyuru Bölümünün Boyutlarını Ayarlama */
 @media (max-width: 768px) {
   .announcement {
@@ -453,11 +530,11 @@ if (!isset($_SESSION['user_id'])) {
 
     <hr>
     <div class="side-nav">
-      <div class="item active">
+      <div class="item">
         <i class='bx bx-search-alt'></i>
         <a href="/user/">Ana Sayfa</a>
       </div>
-      <div class="item">
+      <div class="item active">
         <i class='bx bx-message-square-dots'></i>
         <a href="duyuru.php">Duyurular</a>
       </div>
@@ -495,11 +572,19 @@ if (!isset($_SESSION['user_id'])) {
 
 <main>
   <!-- Duyuru Bölümü -->
-  <section class="announcement">
     <div class="announcement-content">
-      <h3>Artado Store Yeniden Açıldı!</h3>
-      <p>Yeni ürünler ve fırsatlar için hemen ziyaret edin. Tüm kullanıcılar için özel indirimler mevcut!</p>
-    </div>
+
+    <?php foreach ($announcements as $announcement): ?>
+        <div class="announcement">
+          <div class="announcement-content">
+            <h3><?php echo htmlspecialchars($announcement['title']); ?></h3>
+            <p><?php echo nl2br(htmlspecialchars($announcement['description'])); ?></p>
+          </div>
+          <div class="announcement-date">
+            <p><?php echo date('d-m-Y H:i', strtotime($announcement['created_at'])); ?></p>
+          </div>
+        </div>
+      <?php endforeach; ?>
   </section>
 
     <!-- Son Eklenen Projeler -->

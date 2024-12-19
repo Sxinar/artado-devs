@@ -90,6 +90,15 @@ $recent_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <a href="projects" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Projeleri Yönet
           </a>
+          <a href="duyuru" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Duyurular
+          </a>
+          <a href="https://matrix.to/#/#artadoproject:matrix.org" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            Matrix
+          </a>
+          <a href="https://forum.artado.xyz" class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
+            Forum
+          </a>
           <a href="statistics" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
             İstatistikler
           </a>

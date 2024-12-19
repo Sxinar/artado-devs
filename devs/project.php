@@ -145,11 +145,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </div>
   </div>
 
-  <footer class="bg-gray-800 py-4 mt-8">
-    <div class="container mx-auto px-4 text-center text-white">
-      <p>&copy; 2023 Tüm Hakları Saklıdır.</p>
-    </div>
-  </footer>
+
 
   <script>
     // Modal açma fonksiyonu

@@ -1,9 +1,10 @@
 <?php
 
-$host = "sql104.infinityfree.com";
-$dbname = "if0_36661912_newdev";
-$username = "if0_36661912";
-$password = "QAz1BbPjZ9E26O";
+$host = "localhost";
+$dbname = "artadodevs";
+$username = "artado";
+$password = "artado";
+
 
 try {
   $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

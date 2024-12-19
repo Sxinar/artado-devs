@@ -43,6 +43,28 @@
         .border-white-light {
             border-color: rgba(255, 255, 255, 0.4);
         }
+
+        body.announcement-page header {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+flex items-center space-x-4 {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1.5rem;
+}
+body.announcement-page header {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.announcement-page .announcement {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1.5rem;
+}
+
     </style>
 </head>
 <body class="bg-light-black text-white">
